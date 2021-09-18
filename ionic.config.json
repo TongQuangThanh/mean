@@ -1,0 +1,7 @@
+{
+  "name": "mean",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
