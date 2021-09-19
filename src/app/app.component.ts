@@ -1,3 +1,4 @@
+import { ShareService } from './share.service';
 import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
@@ -14,5 +15,6 @@ export class AppComponent {
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  constructor(private shareService: ShareService) { }
+  post() { this.shareService.post(); }
 }
