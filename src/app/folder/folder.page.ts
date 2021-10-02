@@ -1,6 +1,6 @@
-import { ShareService } from './../share.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PostService } from '../shared/service/post.service';
 
 @Component({
   selector: 'app-folder',
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class FolderPage implements OnInit {
   public folder: string;
   file: File;
-  constructor(private activatedRoute: ActivatedRoute, private shareService: ShareService) { }
+  constructor(private activatedRoute: ActivatedRoute, private postService: PostService) { }
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
@@ -25,6 +25,6 @@ export class FolderPage implements OnInit {
     postData.append('title', 'title ' + Date.now());
     postData.append('content', 'content ' + Date.now());
     postData.append('image', this.file);
-    this.shareService.add(postData).subscribe(data => console.log(data));
+    this.postService.add(postData).subscribe(data => console.log(data));
   }
 }
