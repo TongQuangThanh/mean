@@ -1,16 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShareService {
-
+  api = 'http://localhost:3000/api/';
   constructor(private http: HttpClient) { }
 
   post() {
-    this.http.get('http://localhost:3000/api/posts').subscribe(data => {
-      console.log(data);
-    });
+    return this.http.get(this.api + 'posts');
+  }
+
+  add(postData: FormData) {
+    return this.http.post(this.api + 'posts', postData);
   }
 }

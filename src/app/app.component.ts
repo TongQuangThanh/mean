@@ -16,5 +16,9 @@ export class AppComponent {
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(private shareService: ShareService) { }
-  post() { this.shareService.post(); }
+  post() {
+    this.shareService.post().subscribe(data => {
+      console.log(data);
+    });
+  }
 }

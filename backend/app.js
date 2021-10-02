@@ -1,11 +1,11 @@
 /*eslint-env es6*/
 const express = require('express');
-const Post = require('./model/post');
 const mongoose = require('mongoose');
+const postRouters = require('./routers/posts');
 
 const app = express();
 
-mongoose.connect("mongodb+srv://dell2:quangthanh94@cluster0.ttrom.mongodb.net/mean?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://dell:quangthanh94@cluster0.ttrom.mongodb.net/mean?retryWrites=true&w=majority")
   .then((data) => {
     console.log("DB connect success");
   }).catch((e) => {
@@ -21,12 +21,5 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api/posts", (req, res, next) => {
-  const post = new Post({
-    title: req.body.title,
-    content: req.body.content
-  });
-  post.save();
-  res.status(201).json({ message: "Added successfully" })
-})
+app.use("/api/posts", postRouters)
 module.exports = app;
