@@ -3,18 +3,18 @@ import { Post } from '../model/post.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { url } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  postUrl = `${url}/posts`;
+  postUrl = `${environment.url}/posts`;
   constructor(private http: HttpClient) { }
 
   get() {
     return this.http
-    .get(`${url}/posts`)
+    .get(`${this.postUrl}`)
     .pipe(
       map((res: any) => {
         console.log(res);
